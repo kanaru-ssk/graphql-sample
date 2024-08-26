@@ -1,17 +1,16 @@
 FROM node:22-alpine AS build
 
-ARG SERVICE
-
 WORKDIR /app
 
 COPY package.json package-lock.json .
 
 RUN npm ci
 
-ARG APP_ENV
 COPY . .
-RUN pnpm run build:${APP_ENV}
+RUN npm run build
 
 FROM gcr.io/distroless/nodejs22:nonroot
-COPY --from=build /app /app
-ENTRYPOINT ["/app"]
+COPY --from=build /app/build /app/build
+COPY --from=build /app/node_modules /app/node_modules
+COPY --from=build /app/supergraph.graphql /app/supergraph.graphql
+ENTRYPOINT [ "/nodejs/bin/node", "/app/build/index.js" ]

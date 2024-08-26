@@ -2,9 +2,12 @@
 
 import { ApolloServer } from "apollo-server";
 import { ApolloGateway } from "@apollo/gateway";
-import { readFileSync } from "fs";
+import fs from "fs";
+import path from "path";
 
-const supergraphSdl = readFileSync("./supergraph.graphql").toString();
+const supergraphSdl = fs
+  .readFileSync(path.resolve(__dirname, "../supergraph.graphql"))
+  .toString();
 
 // Initialize an ApolloGateway instance and pass it
 // the supergraph schema

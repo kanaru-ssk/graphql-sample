@@ -14,5 +14,9 @@
   "devDependencies": {
     "@apollo/rover": "^0.26.0",
     "typescript": "^5.5.4"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10"
   }
 }

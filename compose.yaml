@@ -1,0 +1,17 @@
+services:
+  api-gateway:
+    build:
+      context: ./backend/api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./backend/api-gateway
+          target: /app
+          ignore:
+            - build
+            - node_modules
+        - action: rebuild
+          path: ./backend/api-gateway/package.json
