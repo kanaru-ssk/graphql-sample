@@ -1,0 +1,10 @@
+federation_version: =2.3.2
+subgraphs:
+  users:
+    routing_url: users:4000
+    schema:
+      file: ../graph-server/users/users.graphql
+  people:
+    routing_url: products:4000
+    schema:
+      file: ../graph-server/products/products.graphql
