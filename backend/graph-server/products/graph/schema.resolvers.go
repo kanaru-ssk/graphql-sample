@@ -6,14 +6,13 @@ package graph
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/kanaru-ssk/graphql-sample/backend/graph-server/products/graph/model"
 )
 
 // TopProducts is the resolver for the topProducts field.
 func (r *queryResolver) TopProducts(ctx context.Context, first *int) ([]*model.Product, error) {
-	panic(fmt.Errorf("not implemented: TopProducts - topProducts"))
+	return hats, nil
 }
 
 // Query returns QueryResolver implementation.

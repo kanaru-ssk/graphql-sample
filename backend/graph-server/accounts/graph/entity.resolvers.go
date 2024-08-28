@@ -6,19 +6,26 @@ package graph
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/kanaru-ssk/graphql-sample/backend/graph-server/accounts/graph/model"
 )
 
 // FindEmailHostByID is the resolver for the findEmailHostByID field.
 func (r *entityResolver) FindEmailHostByID(ctx context.Context, id string) (*model.EmailHost, error) {
-	panic(fmt.Errorf("not implemented: FindEmailHostByID - findEmailHostByID"))
+	return r.HostForUserID(id)
 }
 
 // FindUserByID is the resolver for the findUserByID field.
 func (r *entityResolver) FindUserByID(ctx context.Context, id string) (*model.User, error) {
-	panic(fmt.Errorf("not implemented: FindUserByID - findUserByID"))
+	name := "User " + id
+	if id == "1234" {
+		name = "Me"
+	}
+
+	return &model.User{
+		ID:       id,
+		Username: name,
+	}, nil
 }
 
 // Entity returns EntityResolver implementation.

@@ -6,24 +6,36 @@ package graph
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/kanaru-ssk/graphql-sample/backend/graph-server/products/graph/model"
 )
 
 // FindManufacturerByID is the resolver for the findManufacturerByID field.
 func (r *entityResolver) FindManufacturerByID(ctx context.Context, id string) (*model.Manufacturer, error) {
-	panic(fmt.Errorf("not implemented: FindManufacturerByID - findManufacturerByID"))
+	return &model.Manufacturer{
+		ID:   id,
+		Name: "Millinery " + id,
+	}, nil
 }
 
 // FindProductByManufacturerIDAndID is the resolver for the findProductByManufacturerIDAndID field.
 func (r *entityResolver) FindProductByManufacturerIDAndID(ctx context.Context, manufacturerID string, id string) (*model.Product, error) {
-	panic(fmt.Errorf("not implemented: FindProductByManufacturerIDAndID - findProductByManufacturerIDAndID"))
+	for _, hat := range hats {
+		if hat.ID == id && hat.Manufacturer.ID == manufacturerID {
+			return hat, nil
+		}
+	}
+	return nil, nil
 }
 
 // FindProductByUpc is the resolver for the findProductByUpc field.
 func (r *entityResolver) FindProductByUpc(ctx context.Context, upc string) (*model.Product, error) {
-	panic(fmt.Errorf("not implemented: FindProductByUpc - findProductByUpc"))
+	for _, hat := range hats {
+		if hat.Upc == upc {
+			return hat, nil
+		}
+	}
+	return nil, nil
 }
 
 // Entity returns EntityResolver implementation.
