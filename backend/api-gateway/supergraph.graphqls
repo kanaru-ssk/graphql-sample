@@ -47,12 +47,22 @@ enum link__Purpose {
   EXECUTION
 }
 
+type Manufacturer
+  @join__type(graph: PRODUCTS, key: "id")
+{
+  id: String!
+  name: String!
+}
+
 type Product
+  @join__type(graph: PRODUCTS, key: "manufacturer { id } id")
   @join__type(graph: PRODUCTS, key: "upc")
 {
+  id: String!
+  manufacturer: Manufacturer!
   upc: String!
   name: String!
-  price: Int
+  price: Int!
 }
 
 type Query

@@ -1,15 +1,16 @@
-type Query {
+extend type Query {
   topProducts(first: Int = 5): [Product]
 }
 
-type Product @key(fields: "upc") {
-  upc: String!
+type Manufacturer @key(fields: "id") {
+  id: String!
   name: String!
-  price: Int
 }
 
-extend schema
-  @link(
-    url: "https://specs.apollo.dev/federation/v2.3"
-    import: ["@key", "@shareable"]
-  )
+type Product @key(fields: "manufacturer { id } id") @key(fields: "upc") {
+  id: String!
+  manufacturer: Manufacturer!
+  upc: String!
+  name: String!
+  price: Int!
+}
