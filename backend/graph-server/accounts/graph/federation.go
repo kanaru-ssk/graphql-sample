@@ -80,6 +80,26 @@ func (ec *executionContext) __resolve_entities(ctx context.Context, representati
 		}()
 
 		switch typeName {
+		case "EmailHost":
+			resolverName, err := entityResolverNameForEmailHost(ctx, rep)
+			if err != nil {
+				return fmt.Errorf(`finding resolver for Entity "EmailHost": %w`, err)
+			}
+			switch resolverName {
+
+			case "findEmailHostByID":
+				id0, err := ec.unmarshalNString2string(ctx, rep["id"])
+				if err != nil {
+					return fmt.Errorf(`unmarshalling param 0 for findEmailHostByID(): %w`, err)
+				}
+				entity, err := ec.resolvers.Entity().FindEmailHostByID(ctx, id0)
+				if err != nil {
+					return fmt.Errorf(`resolving Entity "EmailHost": %w`, err)
+				}
+
+				list[idx[i]] = entity
+				return nil
+			}
 		case "User":
 			resolverName, err := entityResolverNameForUser(ctx, rep)
 			if err != nil {
@@ -167,6 +187,33 @@ func (ec *executionContext) __resolve_entities(ctx context.Context, representati
 		g.Wait()
 		return list
 	}
+}
+
+func entityResolverNameForEmailHost(ctx context.Context, rep map[string]interface{}) (string, error) {
+	for {
+		var (
+			m   map[string]interface{}
+			val interface{}
+			ok  bool
+		)
+		_ = val
+		// if all of the KeyFields values for this resolver are null,
+		// we shouldn't use use it
+		allNull := true
+		m = rep
+		val, ok = m["id"]
+		if !ok {
+			break
+		}
+		if allNull {
+			allNull = val == nil
+		}
+		if allNull {
+			break
+		}
+		return "findEmailHostByID", nil
+	}
+	return "", fmt.Errorf("%w for EmailHost", ErrTypeNotFound)
 }
 
 func entityResolverNameForUser(ctx context.Context, rep map[string]interface{}) (string, error) {

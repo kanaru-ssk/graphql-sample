@@ -254,7 +254,7 @@ func (ec *executionContext) introspectType(name string) (*introspection.Type, er
 	return introspection.WrapTypeFromDef(ec.Schema(), ec.Schema().Types[name]), nil
 }
 
-//go:embed "products.graphql"
+//go:embed "schema.graphqls"
 var sourcesFS embed.FS
 
 func sourceData(filename string) string {
@@ -266,7 +266,7 @@ func sourceData(filename string) string {
 }
 
 var sources = []*ast.Source{
-	{Name: "products.graphql", Input: sourceData("products.graphql"), BuiltIn: false},
+	{Name: "schema.graphqls", Input: sourceData("schema.graphqls"), BuiltIn: false},
 	{Name: "../federation/directives.graphql", Input: `
 	directive @authenticated on FIELD_DEFINITION | OBJECT | INTERFACE | SCALAR | ENUM
 	directive @composeDirective(name: String!) repeatable on SCHEMA

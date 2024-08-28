@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./build/index.js",
     "build": "tsc",
-    "supergraph:gen": "rover supergraph compose --config supergraph.yaml --output supergraph.graphql"
+    "supergraph:gen": "rover supergraph compose --config supergraph.yaml --output supergraph.graphqls"
   },
   "dependencies": {
     "@apollo/gateway": "^2.8.4",

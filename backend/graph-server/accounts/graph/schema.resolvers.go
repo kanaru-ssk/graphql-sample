@@ -16,7 +16,16 @@ func (r *queryResolver) Me(ctx context.Context) (*model.User, error) {
 	panic(fmt.Errorf("not implemented: Me - me"))
 }
 
+// Host is the resolver for the host field.
+func (r *userResolver) Host(ctx context.Context, obj *model.User) (*model.EmailHost, error) {
+	panic(fmt.Errorf("not implemented: Host - host"))
+}
+
 // Query returns QueryResolver implementation.
 func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
+// User returns UserResolver implementation.
+func (r *Resolver) User() UserResolver { return &userResolver{r} }
+
 type queryResolver struct{ *Resolver }
+type userResolver struct{ *Resolver }

@@ -3,8 +3,8 @@ subgraphs:
   accounts:
     routing_url: accounts:4001
     schema:
-      file: ../graph-server/accounts/graph/accounts.graphql
+      file: ../graph-server/accounts/graph/schema.graphqls
   products:
     routing_url: products:4002
     schema:
-      file: ../graph-server/products/graph/products.graphql
+      file: ../graph-server/products/graph/schema.graphqls

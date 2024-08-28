@@ -19,6 +19,13 @@ directive @join__unionMember(graph: join__Graph!, member: String!) repeatable on
 
 directive @link(url: String, as: String, for: link__Purpose, import: [link__Import]) repeatable on SCHEMA
 
+type EmailHost
+  @join__type(graph: ACCOUNTS, key: "id")
+{
+  id: String!
+  name: String!
+}
+
 scalar join__FieldSet
 
 enum join__Graph {
@@ -60,5 +67,7 @@ type User
   @join__type(graph: ACCOUNTS, key: "id")
 {
   id: ID!
+  host: EmailHost!
+  email: String!
   username: String!
 }
