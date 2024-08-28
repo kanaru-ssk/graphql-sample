@@ -6,7 +6,7 @@ import fs from "fs";
 import path from "path";
 
 const supergraphSdl = fs
-  .readFileSync(path.resolve(__dirname, "../supergraph.graphql"))
+  .readFileSync(path.resolve(__dirname, "../supergraph.graphqls"))
   .toString();
 
 // Initialize an ApolloGateway instance and pass it

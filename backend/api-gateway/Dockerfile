@@ -12,5 +12,5 @@ RUN npm run build
 FROM gcr.io/distroless/nodejs22:nonroot
 COPY --from=build /app/build /app/build
 COPY --from=build /app/node_modules /app/node_modules
-COPY --from=build /app/supergraph.graphql /app/supergraph.graphql
+COPY --from=build /app/supergraph.graphqls /app/supergraph.graphqls
 ENTRYPOINT [ "/nodejs/bin/node", "/app/build/index.js" ]
