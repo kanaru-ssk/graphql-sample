@@ -1,10 +1,10 @@
 federation_version: =2.3.2
 subgraphs:
-  users:
-    routing_url: users:4000
+  accounts:
+    routing_url: accounts:4001
     schema:
-      file: ../graph-server/users/users.graphql
-  people:
-    routing_url: products:4000
+      file: ../graph-server/accounts/graph/accounts.graphql
+  products:
+    routing_url: products:4002
     schema:
-      file: ../graph-server/products/products.graphql
+      file: ../graph-server/products/graph/products.graphql
