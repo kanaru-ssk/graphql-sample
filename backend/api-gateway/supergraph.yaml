@@ -1,14 +1,14 @@
 federation_version: =2.3.2
 subgraphs:
   accounts:
-    routing_url: accounts:4001/query
+    routing_url: http://accounts:4001/query
     schema:
       file: ../graph-server/accounts/graph/schema.graphqls
   products:
-    routing_url: products:4002/query
+    routing_url: http://products:4002/query
     schema:
       file: ../graph-server/products/graph/schema.graphqls
   reviews:
-    routing_url: reviews:4003/query
+    routing_url: http://reviews:4003/query
     schema:
       file: ../graph-server/reviews/graph/schema.graphqls

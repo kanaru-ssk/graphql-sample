@@ -5,6 +5,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - 4000:4000
+    depends_on:
+      - accounts
+      - products
+      - reviews
 
   accounts:
     build:

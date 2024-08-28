@@ -30,9 +30,9 @@ type EmailHost
 scalar join__FieldSet
 
 enum join__Graph {
-  ACCOUNTS @join__graph(name: "accounts", url: "accounts:4001/query")
-  PRODUCTS @join__graph(name: "products", url: "products:4002/query")
-  REVIEWS @join__graph(name: "reviews", url: "reviews:4003/query")
+  ACCOUNTS @join__graph(name: "accounts", url: "http://accounts:4001/query")
+  PRODUCTS @join__graph(name: "products", url: "http://products:4002/query")
+  REVIEWS @join__graph(name: "reviews", url: "http://reviews:4003/query")
 }
 
 scalar link__Import
