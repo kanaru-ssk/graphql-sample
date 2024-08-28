@@ -1,7 +1,5 @@
 FROM golang:1.22 AS build
 
-ARG SERVICE
-
 WORKDIR /go/src
 
 COPY go.mod go.sum .
