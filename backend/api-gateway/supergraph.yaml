@@ -8,3 +8,7 @@ subgraphs:
     routing_url: products:4002
     schema:
       file: ../graph-server/products/graph/schema.graphqls
+  reviews:
+    routing_url: reviews:4003
+    schema:
+      file: ../graph-server/reviews/graph/schema.graphqls

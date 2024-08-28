@@ -21,9 +21,10 @@ directive @link(url: String, as: String, for: link__Purpose, import: [link__Impo
 
 type EmailHost
   @join__type(graph: ACCOUNTS, key: "id")
+  @join__type(graph: REVIEWS, key: "id")
 {
   id: String!
-  name: String!
+  name: String! @join__field(graph: ACCOUNTS)
 }
 
 scalar join__FieldSet
@@ -31,6 +32,7 @@ scalar join__FieldSet
 enum join__Graph {
   ACCOUNTS @join__graph(name: "accounts", url: "accounts:4001")
   PRODUCTS @join__graph(name: "products", url: "products:4002")
+  REVIEWS @join__graph(name: "reviews", url: "reviews:4003")
 }
 
 scalar link__Import
@@ -49,35 +51,49 @@ enum link__Purpose {
 
 type Manufacturer
   @join__type(graph: PRODUCTS, key: "id")
+  @join__type(graph: REVIEWS, key: "id")
 {
   id: String!
-  name: String!
+  name: String! @join__field(graph: PRODUCTS)
 }
 
 type Product
   @join__type(graph: PRODUCTS, key: "manufacturer { id } id")
   @join__type(graph: PRODUCTS, key: "upc")
+  @join__type(graph: REVIEWS, key: " manufacturer{  id} id")
 {
   id: String!
   manufacturer: Manufacturer!
-  upc: String!
-  name: String!
-  price: Int!
+  upc: String! @join__field(graph: PRODUCTS)
+  name: String! @join__field(graph: PRODUCTS)
+  price: Int! @join__field(graph: PRODUCTS)
+  reviews: [Review] @join__field(graph: REVIEWS)
 }
 
 type Query
   @join__type(graph: ACCOUNTS)
   @join__type(graph: PRODUCTS)
+  @join__type(graph: REVIEWS)
 {
   me: User @join__field(graph: ACCOUNTS)
   topProducts(first: Int = 5): [Product] @join__field(graph: PRODUCTS)
 }
 
+type Review
+  @join__type(graph: REVIEWS)
+{
+  body: String!
+  author: User! @join__field(graph: REVIEWS, provides: "username")
+  product: Product!
+}
+
 type User
   @join__type(graph: ACCOUNTS, key: "id")
+  @join__type(graph: REVIEWS, key: "id")
 {
   id: ID!
-  host: EmailHost!
-  email: String!
-  username: String!
+  host: EmailHost! @join__field(graph: ACCOUNTS) @join__field(graph: REVIEWS, external: true)
+  email: String! @join__field(graph: ACCOUNTS) @join__field(graph: REVIEWS, external: true)
+  username: String! @join__field(graph: ACCOUNTS) @join__field(graph: REVIEWS, external: true)
+  reviews: [Review] @join__field(graph: REVIEWS, requires: "host {id} email")
 }
