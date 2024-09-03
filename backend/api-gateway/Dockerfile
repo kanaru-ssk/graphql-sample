@@ -1,12 +1,18 @@
-FROM node:22-alpine AS build
+FROM node:22 AS build
 
 WORKDIR /app
 
-COPY package.json package-lock.json .
+COPY ./api-gateway/package.json ./api-gateway/package-lock.json .
 
 RUN npm ci
 
-COPY . .
+COPY ./api-gateway/supergraph.yaml .
+COPY ./graph-server/accounts/graph/schema.graphqls ./subgraph/accounts.graphqls
+COPY ./graph-server/products/graph/schema.graphqls ./subgraph/products.graphqls
+COPY ./graph-server/reviews/graph/schema.graphqls ./subgraph/reviews.graphqls
+RUN npm run supergraph:gen
+
+COPY ./api-gateway .
 RUN npm run build
 
 FROM gcr.io/distroless/nodejs22:nonroot

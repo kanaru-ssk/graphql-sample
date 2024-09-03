@@ -3,12 +3,12 @@ subgraphs:
   accounts:
     routing_url: http://accounts:4001/query
     schema:
-      file: ../graph-server/accounts/graph/schema.graphqls
+      file: ./subgraph/accounts.graphqls
   products:
     routing_url: http://products:4002/query
     schema:
-      file: ../graph-server/products/graph/schema.graphqls
+      file: ./subgraph/products.graphqls
   reviews:
     routing_url: http://reviews:4003/query
     schema:
-      file: ../graph-server/reviews/graph/schema.graphqls
+      file: ./subgraph/reviews.graphqls
