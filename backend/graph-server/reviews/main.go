@@ -8,7 +8,7 @@ import (
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/handler/debug"
 	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/kanaru-ssk/graphql-sample/backend/graph-server/accounts/graph"
+	"github.com/kanaru-ssk/graphql-sample/backend/graph-server/reviews/graph"
 )
 
 const defaultPort = "4003"
