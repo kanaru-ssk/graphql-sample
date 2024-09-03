@@ -1,14 +1,14 @@
 federation_version: =2.3.2
 subgraphs:
   accounts:
-    routing_url: http://accounts:4001/query
+    routing_url: https://graphql-sample-accounts-641862643887.us-central1.run.app/query
     schema:
       file: ./subgraph/accounts.graphqls
   products:
-    routing_url: http://products:4002/query
+    routing_url: https://graphql-sample-products-641862643887.us-central1.run.app/query
     schema:
       file: ./subgraph/products.graphqls
   reviews:
-    routing_url: http://reviews:4003/query
+    routing_url: https://graphql-sample-reviews-641862643887.us-central1.run.app/query
     schema:
       file: ./subgraph/reviews.graphqls
