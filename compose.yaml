@@ -13,6 +13,20 @@ services:
       - products
       - reviews
 
+  api-gateway-introspect:
+    build:
+      context: ./backend/api-gateway-introspect
+      dockerfile: Dockerfile
+    platform: linux/amd64
+    ports:
+      - 8000:8000
+    environment:
+      - PORT=8000
+    depends_on:
+      - accounts
+      - products
+      - reviews
+
   accounts:
     build:
       context: ./backend/graph-server/accounts
