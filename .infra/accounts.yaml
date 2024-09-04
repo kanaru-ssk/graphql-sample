@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: graphql-sample-accounts
   annotations:
-    run.googleapis.com/ingress: all
+    run.googleapis.com/ingress: internal
 spec:
   template:
     spec:
